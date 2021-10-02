@@ -106,6 +106,21 @@ def convert_1d_to_2d(pixels, image_size):
         new_pixels.append(new_line)
     return new_pixels
 
+def get_overlap(source_file1, source_file2):
+    image_size1 = get_image_size(source_file1)
+    image_size2 = get_image_size(source_file2)
+    return (min(image_size1[0], image_size2[0]), min(image_size1[1], image_size2[1]))
+
+def crop(pixels, old_image_size, new_image_size):
+    new_pixels = convert_1d_to_2d(pixels, old_image_size)
+    return crop(new_pixels, new_image_size)
+
+def crop(pixels, new_image_size):
+    width, height = new_image_size
+    new_pixels = []
+    for row in height:
+        new_pixels.append(row[:width])
+    return new_pixels
 
 def flatten(array):
     return list(np.array(array).flatten())
