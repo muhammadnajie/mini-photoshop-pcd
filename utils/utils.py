@@ -4,76 +4,97 @@ import time
 
 from numpy.lib.utils import source
 
-#get data pixels from source file
-#return data type is list
-def getPixels(sourceFile):
+DEFAULT_EXTENSION = ".png"
+
+
+def get_pixels(source_file):
+    """ Convert image from the source file into array
+    representing each pixel for its element
+
+    Args:
+        source_file (str): The first parameter
+            the location of the image
+
+    Returns:
+        obj: 1d array of unsigned int
+
+    Raises:
+        FileNotFoundError:
+    """
     try:
-        im = Image.open(sourceFile)
+        im = Image.open(source_file)
         pixels = list(im.getdata())
         im.close()
         return pixels
-    except:
-        print("can't open the source file. Make sure source file is correct.")
+    except FileNotFoundError:
+        msg = "can't open the source file. Make sure source file is correct."
+        raise FileNotFoundError(msg)
 
-#check if pixels (data type is list) is a grayscale or not
-def isGrayscale(pixels):
+
+def is_grayscale(pixels):
+    """ Check if the image is a grayscale"""
     return pixels[0] == int
 
-#save image from pixels with name 'destFile', height 'height', and width 'width'
-def saveImage(pixels, height, width, destFile):
+
+# save image from pixels with name 'destFile', height 'height', and width 'width'
+def save_image(pixels, height, width, dest_file):
     try:
         ar = np.array(pixels, dtype=np.uint8)
         ar = np.reshape(ar, (height, width))
         im = Image.fromarray(ar)
-        destFile = destFile or str(round(time.time()*1000))+".png"
-        im.save(destFile)
-        return destFile
+        dest_file = dest_file or str(round(time.time() * 1000)) + DEFAULT_EXTENSION
+        im.save(dest_file)
+        return dest_file
     except:
         print("Fail to save the image.")
 
-#get all source file from command
-def getAllSourceFile(command):
-    opIndex= 0
+
+# get all source file from command
+def get_all_source_files(command):
+    op_index = 0
     for arg in command:
-        if(arg == "--op"):
+        if arg == "--op":
             break
-        opIndex = opIndex + 1
-    sourceFile = []
-    if len(command)-1 > opIndex:
-        for i in range(opIndex+1, len(command)):
-            if(command[i][0] == '-'):
+        op_index = op_index + 1
+    source_file = []
+    if len(command) - 1 > op_index:
+        for i in range(op_index + 1, len(command)):
+            if (command[i][0] == '-'):
                 break
-            sourceFile.append(command[i])
-    return sourceFile
-    
-#get image size from file name
-#return data type is tuple (width, height)
-def getImageSize(image):
+            source_file.append(command[i])
+    return source_file
+
+
+# get image size from file name
+# return data type is tuple (width, height)
+def get_image_size(image):
     im = Image.open(image)
     size = im.size
     im.close()
     return size
 
+
 # return max width and max height
 # ex. data = (150, 300) and (220, 110)
 # returned data (220, 110)
-def getMaxSize(images): 
-    maxWidth = 0
-    maxHeight = 0
+def get_max_size(images):
+    max_width = 0
+    max_height = 0
     for image in images:
-        size = getImageSize(image)
-        maxWidth = max(maxWidth, size[0])
-        maxHeight = max(maxHeight, size[1])
-    return (maxWidth, maxHeight)
+        size = get_image_size(image)
+        max_width = max(max_width, size[0])
+        max_height = max(max_height, size[1])
+    return tuple([max_width, max_height])
 
-#get destiny file name from command
-def getDestFile(command):
-    dIndex= 0
+
+# get destiny file name from command
+def get_dest_file(command):
+    d_index = 0
     for arg in command:
-        if(arg == "-d"):
+        if arg == "-d":
             break
-        dIndex = dIndex + 1
-    return command[dIndex + 1] if len(command) - 1 > dIndex else ""
+        d_index = d_index + 1
+    return command[d_index + 1] if len(command) - 1 > d_index else ""
 
 
 def convert_1d_to_2d(pixels, image_size):
