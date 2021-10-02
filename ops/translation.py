@@ -6,7 +6,6 @@ def translation(pixels, imgSize, x, y):
     height = imgSize[1]
     width = imgSize[0]
     new_pixels = [[0 for i in range(width)] for j in range(height)]
-    print(len(pixels))
     for i in range(height):
         for j in range(width):
             if(i+y < height and j-x < width and i+y > 0 and j-x > 0):
