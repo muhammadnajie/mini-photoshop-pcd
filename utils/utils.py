@@ -9,7 +9,7 @@ from numpy.lib.utils import source
 def getPixels(sourceFile):
     try:
         im = Image.open(sourceFile)
-        pixels = im.getdata()
+        pixels = list(im.getdata())
         im.close()
         return pixels
     except:
