@@ -105,3 +105,7 @@ def convert_1d_to_2d(pixels, image_size):
         new_line = pixels[start:end]
         new_pixels.append(new_line)
     return new_pixels
+
+
+def flatten(array):
+    return list(np.array(array).flatten())
