@@ -73,4 +73,14 @@ def getDestFile(command):
         if(arg == "-d"):
             break
         dIndex = dIndex + 1
-    return command[dIndex+1] if len(command)-1 > dIndex else ""
+    return command[dIndex + 1] if len(command) - 1 > dIndex else ""
+
+
+def convert_1d_to_2d(pixels, image_size):
+    new_pixels = []
+    for i in range(image_size[1]):
+        start = i * image_size[0]
+        end = start + image_size[0]
+        new_line = pixels[start:end]
+        new_pixels.append(new_line)
+    return new_pixels
