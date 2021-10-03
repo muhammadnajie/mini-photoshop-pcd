@@ -1,10 +1,10 @@
-from utils.utils import convert_1d_to_2d
+import utils.utils as util
 
 
-def zooming(pixels, image_size, x, y):
-    new_pixels = convert_1d_to_2d(pixels, image_size)
+def zoomout(pixels, image_size, x, y):
+    new_pixels = util.convert_1d_to_2d(pixels, image_size)
     new_pixels = copy_row(new_pixels, y)
-    new_pixels = copy_column(new_pixels, y)
+    new_pixels = copy_column(new_pixels, x)
     return new_pixels
 
 def copy_row(pixels, y):

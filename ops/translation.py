@@ -1,8 +1,8 @@
-from utils.utils import convert_1d_to_2d
+import utils.utils as util
 
 
 def translation(pixels, imgSize, x, y):
-    pixels = convert_1d_to_2d(pixels, imgSize)
+    pixels = util.convert_1d_to_2d(pixels, imgSize)
     height = imgSize[1]
     width = imgSize[0]
     new_pixels = [[0 for i in range(width)] for j in range(height)]

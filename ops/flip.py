@@ -1,8 +1,7 @@
-from utils.utils import convert_1d_to_2d, flatten
-import numpy as np
+import utils.utils as util
 
 def vertical_flip(pixels, image_size):
-    pixels_2d = convert_1d_to_2d(pixels, image_size)
+    pixels_2d = util.convert_1d_to_2d(pixels, image_size)
     flipped_image = []
     for i in range(image_size[1]):
         flipped_image.append([0] * image_size[0])
@@ -19,7 +18,7 @@ def horizontal_flip(pixels, image_size):
     :param image_size (tuple, w*h):
     :return:
     """
-    pixels_2d = convert_1d_to_2d(pixels, image_size)
+    pixels_2d = util.convert_1d_to_2d(pixels, image_size)
     flipped_image = []
     W = image_size[0]
     for i in range(image_size[1]):
