@@ -1,4 +1,4 @@
-def division(pixels, pixels2):
+def multipication(pixels, pixels2):
     for i in range(len(pixels)):
         if pixels2 == int:
             pixels[i] *= pixels2
