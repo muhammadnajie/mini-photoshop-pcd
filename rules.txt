@@ -1,0 +1,72 @@
+{
+    "and" : [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "bright": [
+        "source_file.greyscale",
+        "c"
+    ],
+    "div": [
+        "source_file.greyscale",
+        "c"
+    ],
+    "vflip": [
+        "source_file.greyscale",
+        "image_size"
+    ],
+    "hflip": [
+        "source_file.greyscale",
+        "image_size"
+    ],
+    "or": [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "rgb2grayscale": [
+        "source_file.rgb"
+    ],
+    "subc": [
+        "source_file.greyscale",
+        "c"
+    ],
+    "sub": [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "sumc": [
+        "source_file.greyscale",
+        "c"
+    ],
+    "sum": [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "translation": [
+        "source_file.greyscale",
+        "image_size",
+        "x",
+        "y"
+    ],
+    "xor": [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "zoomout": [
+        "source_file.greyscale",
+        "image_size",
+        "x",
+        "y"
+    ],
+    "negative": [
+        "source_file.greyscale"
+    ],
+    "multi": [
+        "source_file.greyscale",
+        "source_file.greyscale"
+    ],
+    "multic": [
+        "source_file.greyscale",
+        "c"
+    ]
+}
