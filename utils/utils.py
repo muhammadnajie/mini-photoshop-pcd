@@ -148,7 +148,10 @@ def mapping_parameter(command):
             param = command[i][1:]
             if param in user_input:
                 i += 1
-                user_input[param] = eval(command[i])
+                if param == "o":
+                    user_input[param] = command[i]
+                else:
+                    user_input[param] = eval(command[i])
             else:
                 raise ValueError("can't reconignize the '"+param+"' parameter.")
         else:
