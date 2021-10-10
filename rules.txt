@@ -58,6 +58,12 @@
         "x",
         "y"
     ],
+    "zoomin": [
+        "source_file.greyscale",
+        "image_size",
+        "x",
+        "y"
+    ],
     "negative": [
         "source_file.greyscale"
     ],
