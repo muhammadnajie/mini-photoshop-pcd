@@ -14,7 +14,7 @@ from ops.substraction import substraction
 from ops.summary import summary
 from ops.translation import translation
 from ops.xor import xor_ops
-from ops.zooming import zoomout
+from ops.zooming import zoomout, zoomin
 
 DEFAULT_EXTENSION = ".png"
 
@@ -231,6 +231,7 @@ def do_ops(conf, data):
         "translation": translation,
         "xor": xor_ops,
         "zoomout": zoomout,
+        "zoomin": zoomin,
         "negative": negative,
         "multi": multipication,
         "multic": multipication
