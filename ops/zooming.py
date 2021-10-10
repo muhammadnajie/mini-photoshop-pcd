@@ -33,20 +33,17 @@ def zoomin(pixels, image_size, x, y):
 def add_row(pixels, y):
     i = 0
     sum_temp = 0
-    row_temp = []
-    new_pixels = []
     width = len(pixels[0])
     height = len(pixels)
+    new_pixels = [[] for _ in range(height//y)]
     for column in range(width):
         for row in range(height):
             sum_temp += pixels[row][column]
             i += 1
             if i == y:
-                row_temp.append(sum_temp)
+                new_pixels[row//y].append(sum_temp)
                 sum_temp = 0
                 i = 0
-        new_pixels.append(row_temp.copy())
-        row_temp.clear()
     return new_pixels
 
 def add_column(pixels, x):

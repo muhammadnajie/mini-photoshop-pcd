@@ -247,7 +247,7 @@ def do_ops(conf, data):
         size[0] *= conf["x"]
         size[1] *= conf["y"]
     elif op == "zoomin":
-        size[0] /= conf["x"]
-        size[1] /= conf["y"]
+        size[0] //= conf["x"]
+        size[1] //= conf["y"]
     o = save_image(result, size[1], size[0], conf["o"])
     print("Image successfully saved in "+o)
