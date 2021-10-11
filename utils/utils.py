@@ -15,6 +15,7 @@ from ops.summary import summary
 from ops.translation import translation
 from ops.xor import xor_ops
 from ops.zooming import zoomout, zoomin
+from ops.rotation import CcwRotation
 
 DEFAULT_EXTENSION = ".png"
 
@@ -234,7 +235,8 @@ def do_ops(conf, data):
         "zoomin": zoomin,
         "negative": negative,
         "multi": multipication,
-        "multic": multipication
+        "multic": multipication,
+        "rotation": CcwRotation
     }
     op = conf["op"]
     result = op_functions[op](*data)
@@ -249,5 +251,7 @@ def do_ops(conf, data):
     elif op == "zoomin":
         size[0] //= conf["x"]
         size[1] //= conf["y"]
+    elif op == "rotation":
+        size = result.pop()
     o = save_image(result, size[1], size[0], conf["o"])
     print("Image successfully saved in "+o)

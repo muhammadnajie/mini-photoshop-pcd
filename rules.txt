@@ -74,5 +74,10 @@
     "multic": [
         "source_file.greyscale",
         "c"
+    ],
+    "rotation": [
+        "source_file.greyscale",
+        "image_size",
+        "r"
     ]
 }

@@ -24,11 +24,12 @@ def CcwRotation(pixels, image_size, degree):
         coor_map = add_x(coor_map, -min_x)
     if min_y < 0:
         coor_map = add_y(coor_map, -min_y)
-    longest += abs(min(min_x, min_y))
-    new_pixels = [[0 for __ in range(longest)] for _ in range(longest)]
+    size = search_size(coor_map)
+    new_pixels = [[0 for __ in range(size[0])] for _ in range(size[1])]
     for key in coor_map:
         new_coor = coor_map[key]
         new_pixels[new_coor[1]][new_coor[0]] = pixels[key[1]][key[0]]
+    new_pixels.append((size[0], size[1]))
     return new_pixels
 
 
@@ -42,3 +43,11 @@ def add_y(coor_map, y):
     for key in coor_map:
         coor_map[key] = (coor_map[key][0], coor_map[key][1] + y)
     return coor_map
+
+def search_size(coor_map):
+    max_x = 0
+    max_y = 0
+    for key in coor_map:
+        max_x = max(max_x, coor_map[key][0]+1)
+        max_y = max(max_y, coor_map[key][1]+1)
+    return (max_x, max_y)
