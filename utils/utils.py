@@ -51,15 +51,12 @@ def is_grayscale(pixels):
 
 # save image from pixels with name 'destFile', height 'height', and width 'width'
 def save_image(pixels, height, width, dest_file):
-    # try:
-        ar = np.array(pixels, dtype=np.uint8)
-        ar = np.reshape(ar, (height, width))
-        im = Image.fromarray(ar)
-        dest_file = dest_file or str(round(time.time() * 1000)) + DEFAULT_EXTENSION
-        im.save(dest_file)
-        return dest_file
-    # except:
-    #     print("Fail to save the image.")
+    ar = np.array(pixels, dtype=np.uint8)
+    ar = np.reshape(ar, (height, width))
+    im = Image.fromarray(ar)
+    dest_file = dest_file or str(round(time.time() * 1000)) + DEFAULT_EXTENSION
+    im.save(dest_file)
+    return dest_file
 
 
 # get all source file from command
@@ -189,7 +186,6 @@ def prepare_data(conf):
         if op not in rules:
             raise ValueError("can't reconignize the '"+conf["op"]+"' command.")
         rules_op = rules[op]
-        print("rules_op",rules_op )
         for rule in rules_op:
             detail = rule.split(".")
             data = conf[detail[0]]
