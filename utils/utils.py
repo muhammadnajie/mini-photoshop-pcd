@@ -15,6 +15,7 @@ from ops.summary import summary
 from ops.translation import translation
 from ops.xor import xor_ops
 from ops.zooming import zoomout, zoomin
+from ops.rotation import CcwRotation
 
 DEFAULT_EXTENSION = ".png"
 
@@ -50,15 +51,12 @@ def is_grayscale(pixels):
 
 # save image from pixels with name 'destFile', height 'height', and width 'width'
 def save_image(pixels, height, width, dest_file):
-    # try:
-        ar = np.array(pixels, dtype=np.uint8)
-        ar = np.reshape(ar, (height, width))
-        im = Image.fromarray(ar)
-        dest_file = dest_file or str(round(time.time() * 1000)) + DEFAULT_EXTENSION
-        im.save(dest_file)
-        return dest_file
-    # except:
-    #     print("Fail to save the image.")
+    ar = np.array(pixels, dtype=np.uint8)
+    ar = np.reshape(ar, (height, width))
+    im = Image.fromarray(ar)
+    dest_file = dest_file or str(round(time.time() * 1000)) + DEFAULT_EXTENSION
+    im.save(dest_file)
+    return dest_file
 
 
 # get all source file from command
@@ -188,7 +186,6 @@ def prepare_data(conf):
         if op not in rules:
             raise ValueError("can't reconignize the '"+conf["op"]+"' command.")
         rules_op = rules[op]
-        print("rules_op",rules_op )
         for rule in rules_op:
             detail = rule.split(".")
             data = conf[detail[0]]
@@ -234,7 +231,8 @@ def do_ops(conf, data):
         "zoomin": zoomin,
         "negative": negative,
         "multi": multipication,
-        "multic": multipication
+        "multic": multipication,
+        "rotation": CcwRotation
     }
     op = conf["op"]
     result = op_functions[op](*data)
@@ -249,5 +247,7 @@ def do_ops(conf, data):
     elif op == "zoomin":
         size[0] //= conf["x"]
         size[1] //= conf["y"]
+    elif op == "rotation":
+        size = result.pop()
     o = save_image(result, size[1], size[0], conf["o"])
     print("Image successfully saved in "+o)

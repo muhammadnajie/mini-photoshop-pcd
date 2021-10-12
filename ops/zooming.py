@@ -1,5 +1,5 @@
 import utils.utils as util
-from ops import division
+from ops.division import division
 
 def zoomout(pixels, image_size, x, y):
     new_pixels = util.convert_1d_to_2d(pixels, image_size)
