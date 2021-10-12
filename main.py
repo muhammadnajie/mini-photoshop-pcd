@@ -1,5 +1,5 @@
 from utils.utils import *
-from ops import * # <---- untuk import operasi yang sedang dikerjakan, ganti tes dengan nama python file yang dibuat
+from ops import *
 import sys
 
 # pixels = getPixels("image.jpg")
